@@ -20,9 +20,7 @@ export class RepositoryStatisticsReadModel {
 
   private getLongestPrLinesOfCode(prs: PrWithChangesReadModel[]): number {
     return prs.reduce((prev, current) => {
-      return prev.linesOfCodeToCheck > current.linesOfCodeToCheck
-        ? prev
-        : current;
+      return prev.linesOfCodeToCheck > current.linesOfCodeToCheck ? prev : current;
     }).linesOfCodeToCheck;
   }
 

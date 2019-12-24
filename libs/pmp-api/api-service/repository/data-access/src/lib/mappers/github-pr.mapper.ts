@@ -20,8 +20,6 @@ export class GithubPrMapper implements Mapper<GithubPrEntity, PrModel> {
   }
 
   mapTo(param: PrModel): GithubPrEntity {
-    throw new NotImplementedException(
-      'Mapping to github pr format is not implemented'
-    );
+    throw new NotImplementedException('Mapping to github pr format is not implemented');
   }
 }

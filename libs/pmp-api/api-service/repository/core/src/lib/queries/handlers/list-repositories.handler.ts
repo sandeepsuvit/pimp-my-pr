@@ -13,28 +13,17 @@ import { GetPrChangesQuery } from '../get-pr-changes.query';
 
 @QueryHandler(ListRepositoriesQuery)
 export class ListRepositoriesHandler
-  implements
-    IQueryHandler<ListRepositoriesQuery, RepositoryStatisticsReadModel[]> {
-  constructor(
-    private repositoryRepository: RepositoryDataService,
-    private queryBus: QueryBus
-  ) {}
+  implements IQueryHandler<ListRepositoriesQuery, RepositoryStatisticsReadModel[]> {
+  constructor(private repositoryRepository: RepositoryDataService, private queryBus: QueryBus) {}
 
-  async execute(
-    query: ListRepositoriesQuery
-  ): Promise<RepositoryStatisticsReadModel[]> {
+  async execute(query: ListRepositoriesQuery): Promise<RepositoryStatisticsReadModel[]> {
     const result: Promise<RepositoryStatisticsReadModel>[] = [];
     const repositories = await this.repositoryRepository.find();
     for (const repository of repositories) {
       const repositoryStatisticsPromise = this.queryBus
-        .execute<GetRepositoryPrsQuery, PrModel[]>(
-          new GetRepositoryPrsQuery(repository.fullName)
-        )
+        .execute<GetRepositoryPrsQuery, PrModel[]>(new GetRepositoryPrsQuery(repository.fullName))
         .then(prs => this.getPrsWithChanges(repository, prs))
-        .then(
-          prsWithChanges =>
-            new RepositoryStatisticsReadModel(repository, prsWithChanges)
-        );
+        .then(prsWithChanges => new RepositoryStatisticsReadModel(repository, prsWithChanges));
 
       result.push(repositoryStatisticsPromise);
     }

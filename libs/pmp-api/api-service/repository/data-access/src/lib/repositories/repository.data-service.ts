@@ -4,10 +4,7 @@ import {
   RepositoryModel,
   RepositoryNotFoundException
 } from '@pimp-my-pr/pmp-api/api-service/repository/domain';
-import {
-  githubConfig,
-  PmpApiServiceConfigService
-} from '@pimp-my-pr/pmp-api/shared/config';
+import { githubConfig, PmpApiServiceConfigService } from '@pimp-my-pr/pmp-api/shared/config';
 import { urlFactory } from '@valueadd/typed-urls';
 import { GithubRepositoryEntity } from '../domain/entities/github-repository.entity';
 import { catchError, map } from 'rxjs/operators';
@@ -17,10 +14,7 @@ import { GithubPrEntity } from '../domain/entities/github-pr.entity';
 import { GithubPrMapper } from '../mappers/github-pr.mapper';
 import { throwError } from 'rxjs';
 import { catchRequestExceptions } from '@pimp-my-pr/pmp-api/shared/util';
-import {
-  CoreException,
-  CoreNotFoundException
-} from '@pimp-my-pr/pmp-api/shared/domain';
+import { CoreException, CoreNotFoundException } from '@pimp-my-pr/pmp-api/shared/domain';
 
 @Injectable()
 export class RepositoryDataService {
@@ -29,10 +23,7 @@ export class RepositoryDataService {
       githubConfig.apiUrl + '/repos/:owner/:title',
       true
     ),
-    getRepositoryPrs: urlFactory<'fullName'>(
-      githubConfig.apiUrl + '/repos/:fullName/pulls',
-      true
-    )
+    getRepositoryPrs: urlFactory<'fullName'>(githubConfig.apiUrl + '/repos/:fullName/pulls', true)
   };
   prMapper = new GithubPrMapper();
   repositoryMapper = new GithubRepositoryMapper();
@@ -59,9 +50,7 @@ export class RepositoryDataService {
         catchRequestExceptions(),
         catchError((error: AxiosError | CoreException) => {
           if (error instanceof CoreNotFoundException) {
-            return throwError(
-              new RepositoryNotFoundException(`${owner}/${title}`)
-            );
+            return throwError(new RepositoryNotFoundException(`${owner}/${title}`));
           }
           return throwError(error);
         })
@@ -71,9 +60,7 @@ export class RepositoryDataService {
 
   getRepositoryPrs(repositoryFullName: string): Promise<PrModel[]> {
     return this.httpService
-      .get<GithubPrEntity>(
-        this.endpoints.getRepositoryPrs.url({ fullName: repositoryFullName })
-      )
+      .get<GithubPrEntity>(this.endpoints.getRepositoryPrs.url({ fullName: repositoryFullName }))
       .pipe(
         map((res: AxiosResponse) => res.data),
         map(prs => prs.map(pr => this.prMapper.mapFrom(pr))),

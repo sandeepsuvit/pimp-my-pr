@@ -52,6 +52,15 @@
     },
     "pmp-web-repository-shell": {
       "tags": ["scope:pmp-web-repository", "type:shell"]
+    },
+    "pmp-api-api-service-user-core": {
+      "tags": ["scope:pmp-api", "type:core"]
+    },
+    "pmp-api-api-service-user-api": {
+      "tags": ["scope:pmp-api", "type:api"]
+    },
+    "pmp-api-api-service-user-data-access": {
+      "tags": []
     }
   }
 }

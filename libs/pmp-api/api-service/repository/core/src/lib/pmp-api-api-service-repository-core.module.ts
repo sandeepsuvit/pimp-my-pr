@@ -6,11 +6,7 @@ import { PmpApiApiServiceRepositoryDataAccessModule } from '@pimp-my-pr/pmp-api/
 import { GetRepositoryPrsHandler } from './queries/handlers/get-repository-prs.handler';
 import { GetPrChangesHandler } from './queries/handlers/get-pr-changes.handler';
 
-const QueryHandlers = [
-  ListRepositoriesHandler,
-  GetRepositoryPrsHandler,
-  GetPrChangesHandler
-];
+const QueryHandlers = [ListRepositoriesHandler, GetRepositoryPrsHandler, GetPrChangesHandler];
 
 @Module({
   imports: [CqrsModule, PmpApiApiServiceRepositoryDataAccessModule],

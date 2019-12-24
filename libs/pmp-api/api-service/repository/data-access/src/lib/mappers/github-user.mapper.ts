@@ -13,8 +13,6 @@ export class GithubUserMapper implements Mapper<GithubUserEntity, UserModel> {
   }
 
   mapTo(param: UserModel): GithubUserEntity {
-    throw new NotImplementedException(
-      'Mapping to github user format is not implemented'
-    );
+    throw new NotImplementedException('Mapping to github user format is not implemented');
   }
 }

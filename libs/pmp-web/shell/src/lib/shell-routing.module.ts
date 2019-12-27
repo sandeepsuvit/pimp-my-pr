@@ -1,5 +1,11 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { DATA_ACCESS_API_URL } from '@pimp-my-pr/pmp-web/shell';
+
+export function apiUrlFactory(): string {
+  // Should return apiUrl from the env file;
+  return '';
+}
 
 export const routes: Routes = [
   {
@@ -16,6 +22,12 @@ export const routes: Routes = [
 
 @NgModule({
   exports: [RouterModule],
-  imports: [RouterModule.forRoot(routes)]
+  imports: [RouterModule.forRoot(routes)],
+  providers: [
+    {
+      provide: DATA_ACCESS_API_URL,
+      useFactory: apiUrlFactory
+    }
+  ]
 })
 export class ShellRoutingModule {}

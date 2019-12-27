@@ -67,6 +67,12 @@
     },
     "pmp-web-shared-util": {
       "tags": ["scope:pmp-web-shared", "type:util"]
+    },
+    "pmp-web-repository-data-access": {
+      "tags": []
+    },
+    "pmp-web-repository-feature": {
+      "tags": []
     }
   }
 }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RepositoriesComponent } from '../../../feature/src/lib/containers/repositories/repositories.component';
 
 const routes: Routes = [
   {
@@ -18,8 +19,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'projects',
-    pathMatch: 'full'
+    component: RepositoriesComponent
   }
 ];
 

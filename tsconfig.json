@@ -63,7 +63,8 @@
       ],
       "@pimp-my-pr/pmp-web/repository/repositories-statistics/feature": [
         "libs/pmp-web/repository/repositories-statistics/feature/src/index.ts"
-      ]
+      ],
+      "@pimp-my-pr/pmp-web/core": ["libs/pmp-web/core/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

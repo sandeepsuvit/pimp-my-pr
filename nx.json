@@ -27,7 +27,7 @@
       "tags": ["scope:pmp-api", "type:shell"]
     },
     "pmp-api-api-service-repository-core": {
-      "tags": ["scope:pmp-api", "type:core"]
+      "tags": ["scope:pmp-api", "type:application-services"]
     },
     "pmp-api-api-service-repository-data-access": {
       "tags": ["scope:pmp-api", "type:data-access"]
@@ -91,6 +91,9 @@
     },
     "pmp-web-repository-repositories-statistics-feature": {
       "tags": ["scope:pmp-web-repository", "type:feature"]
+    },
+    "pmp-web-core": {
+      "tags": ["scope:pmp-web", "type:core"]
     }
   }
 }

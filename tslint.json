@@ -50,7 +50,11 @@
         "depConstraints": [
           {
             "sourceTag": "type:application",
-            "onlyDependOnLibsWithTags": ["*"]
+            "onlyDependOnLibsWithTags": ["type:core", "type:shell"]
+          },
+          {
+            "sourceTag": "type:core",
+            "onlyDependOnLibsWithTags": []
           },
           {
             "sourceTag": "type:feature",
@@ -73,7 +77,7 @@
             "onlyDependOnLibsWithTags": ["type:ui", "type:config", "type:util", "type:domain"]
           },
           {
-            "sourceTag": "type:core",
+            "sourceTag": "type:application-services",
             "onlyDependOnLibsWithTags": [
               "type:config",
               "type:util",
@@ -97,7 +101,7 @@
           },
           {
             "sourceTag": "type:api",
-            "onlyDependOnLibsWithTags": ["type:core", "type:domain"]
+            "onlyDependOnLibsWithTags": ["type:application-services", "type:domain"]
           },
           {
             "sourceTag": "scope:pmp-web",

@@ -115,6 +115,9 @@
     },
     "server-repository-core-domain-services": {
       "tags": ["platform:server", "scope:repository", "type:domain-services"]
+    },
+    "server-shared-core-testing": {
+      "tags": ["platform:server", "scope:shared", "type:core"]
     }
   }
 }

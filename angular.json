@@ -1148,6 +1148,31 @@
           }
         }
       }
+    },
+    "server-shared-core-testing": {
+      "root": "libs/server/shared/core-testing",
+      "sourceRoot": "libs/server/shared/core-testing/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/server/shared/core-testing/tsconfig.lib.json",
+              "libs/server/shared/core-testing/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/server/shared/core-testing/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/server/shared/core-testing/jest.config.js",
+            "tsConfig": "libs/server/shared/core-testing/tsconfig.spec.json"
+          }
+        }
+      }
     }
   },
   "cli": {

@@ -4,9 +4,9 @@ export abstract class ContributorEntity {
   @f
   name: string;
   @f
-  id: number;
+  id: string;
   @f
   avatarUrl: string;
   @f
-  contributions: number;
+  contributions?: number;
 }

@@ -4,7 +4,7 @@ import { RepositoryStatisticsReadModel } from '../get-repository-statistics/repo
 export class ReviewerStatisticsReadModel {
   avatarUrl: string;
   contributions: number;
-  id: number;
+  id: string;
   name: string;
   repositories: RepositoryStatisticsReadModel[];
 

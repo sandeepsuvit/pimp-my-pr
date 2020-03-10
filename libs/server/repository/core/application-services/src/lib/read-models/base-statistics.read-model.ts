@@ -5,7 +5,7 @@ import {
 } from '@pimp-my-pr/server/repository/core/domain';
 
 export abstract class BaseStatisticsReadModel {
-  id: number;
+  id: string;
   linesOfCodeToCheck: number;
   longestPrLinesOfCode?: number;
   name: string;

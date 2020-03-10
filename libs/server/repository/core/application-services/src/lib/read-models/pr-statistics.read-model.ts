@@ -6,7 +6,7 @@ export class PrStatisticsReadModel {
   author: PrAuthor;
   commentsCount: number;
   createdAt: Date;
-  id: number;
+  id: string;
   linesOfCodeToCheck: number;
   reviewCommentsCount: number;
   reviewers: PrReviewer[];

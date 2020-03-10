@@ -3,7 +3,7 @@ import { PrEntity } from './pr.entity';
 
 export class RepositoryEntity {
   @f.primary()
-  id: number;
+  id: string;
   @f
   fullName: string;
   @f

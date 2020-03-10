@@ -1,7 +1,7 @@
 import { PrStatistics } from '@pimp-my-pr/shared/domain';
 
 export class RepositoryStatisticsReadModel {
-  id: number;
+  id: string;
   fullName: string;
   name: string;
   owner: string;

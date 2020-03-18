@@ -17,11 +17,11 @@ export class ListReviewersStatisticsHandler
   ) {}
 
   async execute(query: ListReviewersStatisticsQuery): Promise<ReviewersStatisticsItemReadModel[]> {
-    const repositories = await this.repositoryRepository.findAll();
+    const repositories = await this.repositoryRepository.findAll(query.token);
     const result = await Promise.all(
       repositories.map(repository =>
         this.prRepository
-          .findByRepository(repository.fullName)
+          .findByRepository(repository.fullName, query.token)
           .then(prs => this.groupByReviewers(prs))
           .then(repositoryReviewersWithPrs =>
             repositoryReviewersWithPrs.map(

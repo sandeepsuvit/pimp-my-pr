@@ -1,3 +1,3 @@
 export class GetRepositoryStatisticsQuery {
-  constructor(public repositoryId: string) {}
+  constructor(public repositoryId: string, public token: string) {}
 }

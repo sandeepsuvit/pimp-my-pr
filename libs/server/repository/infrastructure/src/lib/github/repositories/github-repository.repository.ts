@@ -36,14 +36,16 @@ export class GithubRepositoryRepository extends RepositoryRepository {
     super();
   }
 
-  async findAll(): Promise<RepositoryEntity[]> {
+  async findAll(token: string): Promise<RepositoryEntity[]> {
     const repositories = this.pmpApiServiceConfigService.getRepositories();
-    return Promise.all(repositories.map(repoId => this.getSingleRepositoryByName(repoId)));
+    return Promise.all(repositories.map(repoId => this.getSingleRepositoryByName(repoId, token)));
   }
 
-  getSingleRepositoryByName(fullName): Promise<RepositoryEntity> {
+  getSingleRepositoryByName(fullName: string, token: string): Promise<RepositoryEntity> {
     return this.httpService
-      .get<GithubRepositoryEntity>(this.endpoints.getRepository.url({ fullName }))
+      .get<GithubRepositoryEntity>(this.endpoints.getRepository.url({ fullName }), {
+        headers: { Authorization: `token ${token}` }
+      })
       .pipe(
         map((res: AxiosResponse) => res.data),
         map(mapGithubRepository),
@@ -58,9 +60,11 @@ export class GithubRepositoryRepository extends RepositoryRepository {
       .toPromise();
   }
 
-  getSingleRepository(id: string): Promise<RepositoryEntity> {
+  getSingleRepository(id: string, token: string): Promise<RepositoryEntity> {
     return this.httpService
-      .get<RepositoryEntity>(this.endpoints.getSingleRepository.url({ id }))
+      .get<RepositoryEntity>(this.endpoints.getSingleRepository.url({ id }), {
+        headers: { Authorization: `token ${token}` }
+      })
       .pipe(
         map((res: AxiosResponse) => res.data),
         map(mapGithubRepository),

@@ -18,13 +18,13 @@ export class GetReviewerStatisticsHandler
   ) {}
 
   async execute(query: GetReviewerStatisticsQuery): Promise<ReviewerStatisticsReadModel> {
-    const repositories = await this.repositoryRepository.findAll();
+    const repositories = await this.repositoryRepository.findAll(query.token);
 
-    const reviewer = await this.reviewerRepository.get(query.payload.username);
+    const reviewer = await this.reviewerRepository.get(query.payload.username, query.token);
     const repositoryStatistics = await Promise.all(
       repositories.map(repository =>
         this.prRepository
-          .findByRepository(repository.fullName)
+          .findByRepository(repository.fullName, query.token)
           .then(prs => {
             return Promise.all(
               prs.filter(pr => pr.reviewers.some(rev => rev.name === query.payload.username))

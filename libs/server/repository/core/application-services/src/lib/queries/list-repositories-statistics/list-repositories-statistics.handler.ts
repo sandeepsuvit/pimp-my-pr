@@ -18,10 +18,10 @@ export class ListRepositoriesStatisticsHandler
     query: ListRepositoriesStatisticsQuery
   ): Promise<RepositoriesStatisticsItemReadModel[]> {
     const result: Promise<RepositoriesStatisticsItemReadModel>[] = [];
-    const repositories = await this.repositoryRepository.findAll();
+    const repositories = await this.repositoryRepository.findAll(query.token);
     for (const repository of repositories) {
       const repositoryStatisticsPromise = this.prRepository
-        .findByRepository(repository.fullName)
+        .findByRepository(repository.fullName, query.token)
         .then(prs => new RepositoriesStatisticsItemReadModel(repository, prs));
 
       result.push(repositoryStatisticsPromise);

@@ -19,22 +19,24 @@ export class RepositoryFacade {
   constructor(private queryBus: QueryBus) {}
 
   getRepositoryStatistics(
-    params: ListSingleRepositoryParams
+    params: ListSingleRepositoryParams,
+    token: string
   ): Promise<RepositoriesStatisticsItemReadModel[]> {
-    return this.queryBus.execute(new GetRepositoryStatisticsQuery(params.repositoryId));
+    return this.queryBus.execute(new GetRepositoryStatisticsQuery(params.repositoryId, token));
   }
 
   getReviewerStatistics(
-    params: ListReviewerStatisticsParams
+    params: ListReviewerStatisticsParams,
+    token: string
   ): Promise<ReviewerStatisticsReadModel> {
-    return this.queryBus.execute(new GetReviewerStatisticsQuery(params));
+    return this.queryBus.execute(new GetReviewerStatisticsQuery(params, token));
   }
 
-  listRepositoriesStatistics(): Promise<RepositoriesStatisticsItemReadModel[]> {
-    return this.queryBus.execute(new ListRepositoriesStatisticsQuery());
+  listRepositoriesStatistics(token: string): Promise<RepositoriesStatisticsItemReadModel[]> {
+    return this.queryBus.execute(new ListRepositoriesStatisticsQuery(token));
   }
 
-  listReviewersStatistics(): Promise<ReviewersStatisticsItemReadModel[]> {
-    return this.queryBus.execute(new ListReviewersStatisticsQuery());
+  listReviewersStatistics(token: string): Promise<ReviewersStatisticsItemReadModel[]> {
+    return this.queryBus.execute(new ListReviewersStatisticsQuery(token));
   }
 }

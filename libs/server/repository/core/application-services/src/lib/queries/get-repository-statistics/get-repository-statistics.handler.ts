@@ -17,10 +17,13 @@ export class GetRepositoryStatisticsHandler
   ) {}
 
   async execute(query: GetRepositoryStatisticsQuery): Promise<RepositoryStatisticsReadModel> {
-    const repository = await this.repositoryRepository.getSingleRepository(query.repositoryId);
+    const repository = await this.repositoryRepository.getSingleRepository(
+      query.repositoryId,
+      query.token
+    );
 
     return await this.prRepository
-      .findByRepository(repository.fullName)
+      .findByRepository(repository.fullName, query.token)
       .then((prs: PrEntity[]) => repositoryPrsStatisticsReadModelFactory(repository, prs));
   }
 }
